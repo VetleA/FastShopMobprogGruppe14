@@ -3,12 +3,15 @@ package com.example.logerino.navigation
 import GUI.HjemSkjerm.HjemSkjerm
 import GUI.Navigasjon.BottomNavigationBar
 import GUI.Profil.Profil
+import GUI.Stores.FetchStoresScreen
+import GUI.UserLocation.LocationFetcherScreen
 import GUI.theme.BottomNavItem
 import android.annotation.SuppressLint
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -32,6 +35,8 @@ import com.example.logerino.handleliste.SpesifikkHandlelisteScreen
 import com.example.logerino.user.UpdateUserInfoScreen
 import com.example.logerino.user.UserInfoScreen
 import com.example.logerino.sign_up.SignUpScreen
+import service.ApiService
+import service.module.ApiServiceModule
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,6 +62,11 @@ fun NavigasjonMaster(){
                     icon = Icons.Default.List
                 ),
                 BottomNavItem(
+                    name = "Butikk",
+                    route = Screens.FetchStoresScreen.route,
+                    icon = Icons.Default.Search
+                ),
+                BottomNavItem(
                     name = "Instillinger",
                     route = Screens.UserInfoScreen.route,
                     icon = Icons.Default.Settings
@@ -79,6 +89,11 @@ fun NavigasjonMaster(){
 fun NavigationGraph(
     navController: NavHostController = rememberNavController(),
 ) {
+    val apiService: ApiService by lazy {
+        ApiServiceModule.createApiService()
+    }
+
+
     NavHost(
         navController = navController,
         startDestination = Screens.SignInScreen.route
@@ -133,6 +148,15 @@ fun NavigationGraph(
 
         composable(route = Screens.ProfilScreen.route){
             Profil()
+
+        }
+
+        composable(route = Screens.LocationFetcherScreen.route){
+            LocationFetcherScreen()
+
+        }
+        composable(route = Screens.FetchStoresScreen.route){
+            FetchStoresScreen(apiService = apiService)
 
         }
 

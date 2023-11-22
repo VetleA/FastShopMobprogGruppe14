@@ -23,5 +23,9 @@ sealed class Screens(val route: String) {
 
     object ProfilScreen : Screens(route = "Profil_Screen")
 
+    object LocationFetcherScreen : Screens(route = "Location_Screen")
+
+    object FetchStoresScreen : Screens(route = "Fetch_Store_Screen")
+
 
 }
