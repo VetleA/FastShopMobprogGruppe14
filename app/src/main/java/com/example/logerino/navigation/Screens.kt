@@ -19,5 +19,9 @@ sealed class Screens(val route: String) {
 
     object OpprettHandlelisteScreen : Screens(route = "Opprett_Handleliste_Screen")
 
+    object HjemScreen : Screens(route = "Hjem_Screen")
+
+    object ProfilScreen : Screens(route = "Profil_Screen")
+
 
 }

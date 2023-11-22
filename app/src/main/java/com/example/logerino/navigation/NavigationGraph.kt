@@ -1,7 +1,8 @@
 package com.example.logerino.navigation
 
+import GUI.HjemSkjerm.HjemSkjerm
 import GUI.Navigasjon.BottomNavigationBar
-import GUI.Navigasjon.NavigationHoved
+import GUI.Profil.Profil
 import GUI.theme.BottomNavItem
 import android.annotation.SuppressLint
 import androidx.compose.material.icons.Icons
@@ -35,29 +36,29 @@ import com.example.logerino.sign_up.SignUpScreen
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Navigasjon(){
+fun NavigasjonMaster(){
     val navController = rememberNavController()
     Scaffold(
         bottomBar = {
             BottomNavigationBar(items = listOf(
                 BottomNavItem(
                     name = "Hjem",
-                    route = Screens.UserInfoScreen.route,
+                    route = Screens.HjemScreen.route,
                     icon = Icons.Default.Home
                 ),
                 BottomNavItem(
                     name = "Profil",
-                    route = "profilhoved",
+                    route = Screens.ProfilScreen.route,
                     icon = Icons.Default.Person
                 ),
                 BottomNavItem(
                     name = "Handleliste",
-                    route = "handlelistehoved",
+                    route = Screens.SpesifikkHandlelisteScreen.route,
                     icon = Icons.Default.List
                 ),
                 BottomNavItem(
                     name = "Instillinger",
-                    route = "instillingerhoved",
+                    route = Screens.UserInfoScreen.route,
                     icon = Icons.Default.Settings
                 ),
             ),
@@ -68,7 +69,7 @@ fun Navigasjon(){
             )
         }
     ){
-        NavigationGraph()
+        NavigationGraph(navController = navController)
     }
 }
 
@@ -80,7 +81,7 @@ fun NavigationGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screens.SpesifikkHandlelisteScreen.route
+        startDestination = Screens.SignInScreen.route
     ) {
         composable(route = Screens.SignInScreen.route) {
             SignInScreen(navController)
@@ -122,6 +123,16 @@ fun NavigationGraph(
 
         composable(route = Screens.SpesifikkHandlelisteScreen.route){
             SpesifikkHandlelisteScreen(navController)
+
+        }
+
+        composable(route = Screens.HjemScreen.route){
+            HjemSkjerm()
+
+        }
+
+        composable(route = Screens.ProfilScreen.route){
+            Profil()
 
         }
 
