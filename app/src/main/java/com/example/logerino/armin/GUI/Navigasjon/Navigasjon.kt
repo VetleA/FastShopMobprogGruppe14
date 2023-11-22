@@ -81,9 +81,6 @@ fun Navigasjon(){
 @Composable
 fun NavigationHoved(navController: NavHostController){
     NavHost(navController = navController, startDestination = "homehoved"){
-        composable("homehoved"){
-            HjemSkjerm()
-        }
         composable("handlelistehoved"){
             Handlelistehoved()
         }
@@ -152,21 +149,6 @@ fun Handlelistehoved(){
         Text(text = "Liste")
     }
 }
-
-
-
-
-
-
-
-
-@Preview(showBackground = true)
-@Composable
-fun HIOFFastShopGruppe14ThemePreview(){
-    HjemSkjerm()
-}
-
-
 
 
 /////////Brukt denne Youtube videoen under som mal for navigasjonsbaren

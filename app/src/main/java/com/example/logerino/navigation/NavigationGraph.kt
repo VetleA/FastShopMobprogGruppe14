@@ -17,6 +17,7 @@ import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -68,7 +69,7 @@ fun NavigasjonMaster(){
                 BottomNavItem(
                     name = "Produkter",
                     route = Screens.ProductSearchScreen.route,
-                    icon = Icons.Default.Settings
+                    icon = Icons.Default.ShoppingCart
                 ),
                 BottomNavItem(
                     name = "Butikk",
@@ -151,7 +152,7 @@ fun NavigationGraph(
         }
 
         composable(route = Screens.HjemScreen.route){
-            HjemSkjerm()
+            HjemSkjerm(navController)
 
         }
 

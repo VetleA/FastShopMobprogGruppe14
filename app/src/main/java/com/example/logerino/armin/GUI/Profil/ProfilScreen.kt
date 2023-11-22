@@ -5,6 +5,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -31,6 +32,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,7 +59,7 @@ fun ProfilScreen(
 
 
 
-    Column (modifier = Modifier.fillMaxSize()){
+    Column (modifier = Modifier.fillMaxSize()) {
         Text(
             text = "Min profil",
             modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -90,37 +92,69 @@ fun ProfilScreen(
         }
 
 
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 4.dp, end = 4.dp),
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
             verticalAlignment = Alignment.CenterVertically
-        ){
-            Text(text = "Adresse: ${getData.adresse}")
+        ) {
+            Box(
+                modifier = Modifier
+                    .padding(8.dp)
+            ) {
+                Text(
+                    text = "Adresse: ${getData.adresse}",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(
+                modifier = Modifier
+                    .padding(8.dp)
+            ) {
+                Text(
+                    text = "Fornavn: ${getData.fornavn}",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
 
         }
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 4.dp, end = 4.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ){
-            Text(text = "Fornavn: ${getData.fornavn}")
-        }
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp),
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
             verticalAlignment = Alignment.Top
-        ){
-            Text(text = "Etternavn: ${getData.etternavn}")
+        ) {
+            Box(
+                modifier = Modifier
+                    .padding(8.dp)
+            ) {
+                Text(
+                    text = "Etternavn: ${getData.etternavn}",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
-        Column(modifier = Modifier
-            .verticalScroll(rememberScrollState())
-            .padding(8.dp)) {
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(8.dp)
+        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
-            ){
+            ) {
                 Button(onClick = { navController.navigate(Screens.UpdateInfoScreen.route) }) {
                     Text(text = "Oppdater info")
                 }
@@ -128,41 +162,4 @@ fun ProfilScreen(
         }
 
     }
-}
-
-@Composable
-fun UserInfoScreen(
-    navController: NavController,
-    dbViewModel: UserViewModel = viewModel()
-) {
-
-    val getData = dbViewModel.state.value
-
-
-
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center) {
-
-
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(text = "Adresse: ${getData.adresse}")
-            Text(text = "Fornavn: ${getData.fornavn}")
-            Text(text = "Etternavn: ${getData.etternavn}")
-
-
-            Button(onClick = { navController.navigate(Screens.UpdateInfoScreen.route) }) {
-                Text(text = "Oppdater info")
-
-            }
-
-        }
-
-    }
-
 }

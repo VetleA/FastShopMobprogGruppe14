@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Settings
@@ -84,6 +85,16 @@ fun InnstillingerScreen(navController: NavController) {
         TextButton(onClick = { navController.navigate(Screens.AboutScreen.route) }) {
             Icon(imageVector = Icons.Default.Info, contentDescription = null)
             Text(text = "Om applikasjonen")
+            Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = null)
+        }
+        Divider(
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(10.dp)
+        )
+        TextButton(onClick = { navController.navigate(Screens.SignInScreen.route) }) {
+            Icon(imageVector = Icons.Default.Clear, contentDescription = null)
+            Text(text = "Logg ut")
             Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = null)
         }
     }

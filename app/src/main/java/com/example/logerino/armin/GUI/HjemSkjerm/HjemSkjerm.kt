@@ -3,13 +3,24 @@ package GUI.HjemSkjerm
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,11 +33,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.logerino.R
+import com.example.logerino.navigation.Screens
 
 @Composable
-fun HjemSkjerm(){
-    Column(modifier = Modifier.fillMaxSize()) {
+fun HjemSkjerm(navController: NavController){
+    Column(modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
             painter = painterResource(id = R.drawable.fast), contentScale = ContentScale.Crop,
             contentDescription = null,
@@ -56,6 +71,36 @@ fun HjemSkjerm(){
         )
 
         Text(
+            text = "Prisoversikt",
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            textAlign = TextAlign.Center,
+            fontSize = 20.sp,
+            fontStyle = FontStyle.Italic
+        )
+
+        TextButton(onClick = { navController.navigate(Screens.ProductSearchScreen.route) }) {
+            Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = null)
+            Text(text = "Finn de beste prisene")
+            Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = null)
+        }
+
+        Text(
+            text = "Finn dine nærmeste butikker!",
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            textAlign = TextAlign.Center,
+            fontSize = 20.sp,
+            fontStyle = FontStyle.Italic
+        )
+
+        TextButton( onClick = { navController.navigate(Screens.FetchStoresScreen.route)}) {
+            Icon(imageVector = Icons.Default.Search, contentDescription = null)
+            Text(text = "Mine nærbutikker")
+            Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = null)
+        }
+
+
+        /*
+        Text(
             text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
                     "Mauris volutpat egestas eros, in aliquet eros tincidunt in. " +
                     "Praesent est purus, fermentum in posuere in, accumsan a nunc. " +
@@ -77,15 +122,10 @@ fun HjemSkjerm(){
             fontStyle = FontStyle.Italic
         )
 
+         */
 
 
 
 
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HjemSkjermPreview(){
-    HjemSkjerm()
 }
