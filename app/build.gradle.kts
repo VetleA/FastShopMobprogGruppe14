@@ -60,6 +60,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("com.google.firebase:firebase-firestore:24.9.1")
     implementation("com.google.firebase:firebase-database-ktx:20.3.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
     // When using Kotlin.
     kapt("androidx.hilt:hilt-compiler:1.1.0")
 
@@ -92,6 +93,14 @@ dependencies {
     //Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Test Api
+    implementation ("com.squareup.okhttp3:okhttp:4.9.3")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
+    testImplementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    testImplementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    // Mock webserver for å simulere API-svar
+    testImplementation ("com.squareup.okhttp3:mockwebserver:4.9.0")
 }
 
 kapt {
