@@ -1,5 +1,16 @@
 package com.example.logerino.navigation
 
+import GUI.Navigasjon.BottomNavigationBar
+import GUI.Navigasjon.NavigationHoved
+import GUI.theme.BottomNavItem
+import android.annotation.SuppressLint
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -20,6 +31,48 @@ import com.example.logerino.handleliste.SpesifikkHandlelisteScreen
 import com.example.logerino.user.UpdateUserInfoScreen
 import com.example.logerino.user.UserInfoScreen
 import com.example.logerino.sign_up.SignUpScreen
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun Navigasjon(){
+    val navController = rememberNavController()
+    Scaffold(
+        bottomBar = {
+            BottomNavigationBar(items = listOf(
+                BottomNavItem(
+                    name = "Hjem",
+                    route = Screens.UserInfoScreen.route,
+                    icon = Icons.Default.Home
+                ),
+                BottomNavItem(
+                    name = "Profil",
+                    route = "profilhoved",
+                    icon = Icons.Default.Person
+                ),
+                BottomNavItem(
+                    name = "Handleliste",
+                    route = "handlelistehoved",
+                    icon = Icons.Default.List
+                ),
+                BottomNavItem(
+                    name = "Instillinger",
+                    route = "instillingerhoved",
+                    icon = Icons.Default.Settings
+                ),
+            ),
+                navController =navController ,
+                onItemClick ={
+                    navController.navigate(it.route)
+                }
+            )
+        }
+    ){
+        NavigationGraph()
+    }
+}
+
+
 
 @Composable
 fun NavigationGraph(
