@@ -30,7 +30,7 @@ import com.example.logerino.R
 
 
 @Composable
-fun Hjelp(){
+fun HelpScreen(){
     Column (modifier = Modifier.fillMaxSize()) {
         TextButton(onClick = { /*TODO*/ }) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
@@ -102,5 +102,5 @@ fun Hjelp(){
 @Preview(showBackground = true)
 @Composable
 fun HjelpPreview(){
-    Hjelp()
+    HelpScreen()
 }

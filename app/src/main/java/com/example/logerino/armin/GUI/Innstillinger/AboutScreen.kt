@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import com.example.logerino.R
 
 @Composable
-fun About(){
+fun AboutScreen(){
     Column (modifier = Modifier.fillMaxSize()){
         TextButton(onClick = { /*TODO*/ }) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
@@ -123,6 +123,12 @@ fun About(){
             fontStyle = FontStyle.Italic
         )
 
+        Divider(
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(45.dp)
+        )
+
 
 
 
@@ -135,5 +141,5 @@ fun About(){
 @Preview(showBackground = true)
 @Composable
 fun AboutPreview(){
-    About()
+    AboutScreen()
 }

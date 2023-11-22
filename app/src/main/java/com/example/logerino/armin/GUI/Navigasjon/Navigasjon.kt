@@ -1,11 +1,9 @@
 package GUI.Navigasjon
 
 import GUI.HjemSkjerm.HjemSkjerm
-import GUI.Innstillinger.Innstillinger
+import GUI.Innstillinger.InnstillingerScreen
 
-import GUI.Profil.Profil
 import GUI.theme.BottomNavItem
-import GUI.theme.HIOFFastShopGruppe14Theme
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -88,9 +86,6 @@ fun NavigationHoved(navController: NavHostController){
         }
         composable("handlelistehoved"){
             Handlelistehoved()
-        }
-        composable("instillingerhoved"){
-            Innstillinger()
         }
     }
 

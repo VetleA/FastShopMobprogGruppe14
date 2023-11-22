@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -34,6 +35,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
@@ -87,19 +89,25 @@ fun HandlelisteScreen(
             Toast.makeText(context, "Handleliste lagt til!", Toast.LENGTH_SHORT).show()}) {
                 Text(text = "Lagre handleliste")
             }
-
-            Button(onClick = { handlelisteViewModel.getDataFromFireStore() }) {
-                Text(text = "Hent data")
-
-            }
-
-
-            Button(onClick = { handlelisteViewModel.getMultipleDocumentsFromFireStore() }) {
-                Text(text = "Hent en mengde data")
+            Divider(
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(45.dp)
+            )
 
             }
 
-            Card(
+        }
+
+
+    }
+
+
+
+
+
+/*
+Card(
                 modifier = Modifier
                     .padding(8.dp)
                     .fillMaxWidth()
@@ -127,14 +135,7 @@ fun HandlelisteScreen(
                     Spacer(modifier = Modifier.size(4.dp))
 
                 }
-
-
-            }
-
-        }
-
-
-    }
+ */
 
 
 

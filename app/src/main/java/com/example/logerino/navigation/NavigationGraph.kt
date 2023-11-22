@@ -1,8 +1,12 @@
 package com.example.logerino.navigation
 
 import GUI.HjemSkjerm.HjemSkjerm
+import GUI.Innstillinger.AboutScreen
+import GUI.Innstillinger.HelpScreen
+import GUI.Innstillinger.InnstillingerScreen
 import GUI.Navigasjon.BottomNavigationBar
-import GUI.Profil.Profil
+import GUI.Produkter.ProductSearchScreen
+import GUI.Profil.ProfilScreen
 import GUI.Stores.FetchStoresScreen
 import GUI.UserLocation.LocationFetcherScreen
 import GUI.theme.BottomNavItem
@@ -45,7 +49,7 @@ fun NavigasjonMaster(){
     val navController = rememberNavController()
     Scaffold(
         bottomBar = {
-            BottomNavigationBar(items = listOf(
+            BottomNavigationBar( items = listOf(
                 BottomNavItem(
                     name = "Hjem",
                     route = Screens.HjemScreen.route,
@@ -58,8 +62,13 @@ fun NavigasjonMaster(){
                 ),
                 BottomNavItem(
                     name = "Handleliste",
-                    route = Screens.SpesifikkHandlelisteScreen.route,
+                    route = Screens.HandlelisteScreen.route,
                     icon = Icons.Default.List
+                ),
+                BottomNavItem(
+                    name = "Produkter",
+                    route = Screens.ProductSearchScreen.route,
+                    icon = Icons.Default.Settings
                 ),
                 BottomNavItem(
                     name = "Butikk",
@@ -68,7 +77,7 @@ fun NavigasjonMaster(){
                 ),
                 BottomNavItem(
                     name = "Instillinger",
-                    route = Screens.UserInfoScreen.route,
+                    route = Screens.InstillingerScreen.route,
                     icon = Icons.Default.Settings
                 ),
             ),
@@ -147,7 +156,7 @@ fun NavigationGraph(
         }
 
         composable(route = Screens.ProfilScreen.route){
-            Profil(navController)
+            ProfilScreen(navController)
 
         }
 
@@ -157,6 +166,25 @@ fun NavigationGraph(
         }
         composable(route = Screens.FetchStoresScreen.route){
             FetchStoresScreen(apiService = apiService)
+
+        }
+        composable(route = Screens.InstillingerScreen.route){
+            InnstillingerScreen(navController)
+
+        }
+
+        composable(route = Screens.AboutScreen.route){
+            AboutScreen()
+
+        }
+
+        composable(route = Screens.HelpScreen.route){
+            HelpScreen()
+
+        }
+
+        composable(route = Screens.ProductSearchScreen.route){
+            ProductSearchScreen(apiService = apiService)
 
         }
 

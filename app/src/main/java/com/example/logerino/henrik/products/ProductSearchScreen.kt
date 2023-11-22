@@ -4,6 +4,8 @@ package GUI.Produkter
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -13,6 +15,7 @@ import model.Data
 import service.ApiService
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductSearchScreen(apiService: ApiService) {
     val coroutineScope = rememberCoroutineScope()
@@ -23,10 +26,14 @@ fun ProductSearchScreen(apiService: ApiService) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        BasicTextField(
+
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
             value = searchQuery,
             onValueChange = { searchQuery = it },
-            modifier = Modifier.padding(16.dp)
+            label = { Text(text = "Søk") }
         )
 
         Button(
