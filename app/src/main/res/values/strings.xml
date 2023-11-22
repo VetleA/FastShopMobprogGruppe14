@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">logerino</string>
+    <string name="handleliste1">Helg</string>
+    <string name="handleliste2">Hverdag</string>
+    <string name="handleliste3">Hyttetur</string>
+    <string name="handleliste4">Trening</string>
+</resources>
