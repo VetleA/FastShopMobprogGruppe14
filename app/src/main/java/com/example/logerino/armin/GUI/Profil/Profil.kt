@@ -40,11 +40,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.logerino.R
+import com.example.logerino.navigation.Screens
+import com.example.logerino.user.UserViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Profil(){
+fun Profil(
+    navController: NavController,
+    dbViewModel: UserViewModel = viewModel()){
 
     val notification = rememberSaveable { mutableStateOf("") }
     if (notification.value.isNotEmpty()){
@@ -54,6 +60,7 @@ fun Profil(){
     var name by rememberSaveable{ mutableStateOf("default name") }
     var epost by rememberSaveable{ mutableStateOf("default email") }
     var bio by rememberSaveable{ mutableStateOf("default bio") }
+    val getData = dbViewModel.state.value
 
 
 
@@ -96,37 +103,22 @@ fun Profil(){
             .padding(start = 4.dp, end = 4.dp),
             verticalAlignment = Alignment.CenterVertically
         ){
-            Text(text = "Name", modifier = Modifier.width(100.dp))
-            TextField(value = name, onValueChange = {name = it},
-                colors = TextFieldDefaults.textFieldColors(
-                    textColor = Color.Black
-                ))
+            Text(text = "Adresse: ${getData.adresse}")
+
         }
         Row(modifier = Modifier
             .fillMaxWidth()
             .padding(start = 4.dp, end = 4.dp),
             verticalAlignment = Alignment.CenterVertically
         ){
-            Text(text = "Epost", modifier = Modifier.width(100.dp))
-            TextField(value = epost, onValueChange = {epost = it},
-                colors = TextFieldDefaults.textFieldColors(
-
-                    textColor = Color.Black
-                ))
+            Text(text = "Fornavn: ${getData.fornavn}")
         }
         Row(modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
             verticalAlignment = Alignment.Top
         ){
-            Text(text = "Bio", modifier = Modifier.width(100.dp).padding(top = 8.dp))
-            TextField(value = bio, onValueChange = {bio = it},
-                colors = TextFieldDefaults.textFieldColors(
-                    textColor = Color.Black,
-                ),
-                singleLine = false,
-                modifier = Modifier.height(150.dp)
-            )
+            Text(text = "Etternavn: ${getData.etternavn}")
         }
         Column(modifier = Modifier
             .verticalScroll(rememberScrollState())
@@ -136,17 +128,49 @@ fun Profil(){
                     .fillMaxWidth()
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
-            ){ // I clickable går funksjonalitet som f. eks tilbake til en annen side
-                Text(text = "Cancel", modifier = Modifier.clickable { notification.value = "Avbryt" })
-                Text(text = "Save", modifier = Modifier.clickable { notification.value = "Profil oppdatert" })
+            ){
+                Button(onClick = { navController.navigate(Screens.UpdateInfoScreen.route) }) {
+                    Text(text = "Oppdater info")
+                }
             }
         }
 
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun ProfilPreview(){
-    Profil()
+fun UserInfoScreen(
+    navController: NavController,
+    dbViewModel: UserViewModel = viewModel()
+) {
+
+    val getData = dbViewModel.state.value
+
+
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center) {
+
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(text = "Adresse: ${getData.adresse}")
+            Text(text = "Fornavn: ${getData.fornavn}")
+            Text(text = "Etternavn: ${getData.etternavn}")
+
+
+            Button(onClick = { navController.navigate(Screens.UpdateInfoScreen.route) }) {
+                Text(text = "Oppdater info")
+
+            }
+
+        }
+
+    }
+
 }

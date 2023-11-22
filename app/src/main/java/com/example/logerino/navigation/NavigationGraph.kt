@@ -147,7 +147,7 @@ fun NavigationGraph(
         }
 
         composable(route = Screens.ProfilScreen.route){
-            Profil()
+            Profil(navController)
 
         }
 

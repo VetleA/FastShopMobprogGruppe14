@@ -86,9 +86,6 @@ fun NavigationHoved(navController: NavHostController){
         composable("homehoved"){
             HjemSkjerm()
         }
-        composable("profilhoved"){
-            Profil()
-        }
         composable("handlelistehoved"){
             Handlelistehoved()
         }
