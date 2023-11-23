@@ -21,7 +21,10 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavBackStackEntry
@@ -29,6 +32,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.logerino.detail.DetailScreen
 import com.example.logerino.handleliste.HandlelisteScreen
@@ -48,6 +52,17 @@ import service.module.ApiServiceModule
 @Composable
 fun NavigasjonMaster(){
     val navController = rememberNavController()
+    val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+
+    when (navBackStackEntry?.destination?.route) {
+        Screens.SignInScreen.route -> {
+            // Show BottomBar
+            bottomBarState.value = false
+        }
+    }
+
+
     Scaffold(
         bottomBar = {
             BottomNavigationBar( items = listOf(
@@ -101,6 +116,17 @@ fun NavigationGraph(
 ) {
     val apiService: ApiService by lazy {
         ApiServiceModule.createApiService()
+    }
+
+    val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+
+
+    when (navBackStackEntry?.destination?.route) {
+        Screens.SignInScreen.route -> {
+            bottomBarState.value = false
+
+        }
     }
 
 
@@ -204,33 +230,4 @@ inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(navControll
     return  hiltViewModel(parentEntry)
 }
 
-/*
-NavHost(
-        navController = navController,
-        startDestination = Screens.SignUpScreen.route
-    ) {
-        navigation(startDestination = Screens.SignUpScreen.route,
-            route = "innlogging"){
-            composable(route = Screens.SignUpScreen.route) {
-                SignUpScreen(navController)
-                val viewModel = it.sharedViewModel<SampleViewModel>(navController)
-
-            }
-
-            composable(route = Screens.SignInScreen.route) {
-                SignInScreen()
-                val viewModel = it.sharedViewModel<SampleViewModel>(navController)
-
-            }
-        }
-        navigation(startDestination = Screens.HomeScreen.route,
-            route = "hjem"){
-            composable(route = Screens.HomeScreen.route) {
-                Home(navController)
-                val viewModel = it.sharedViewModel<SampleViewModel>(navController)
-
-            }
-        }
-    }
- */
 

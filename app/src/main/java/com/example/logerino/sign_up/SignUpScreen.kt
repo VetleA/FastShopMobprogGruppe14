@@ -139,7 +139,7 @@ fun SignUpScreen(
                 .fillMaxWidth()
                 .padding(top = 10.dp), horizontalArrangement = Arrangement.Center
         ) {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { navController.navigate(Screens.HjemScreen.route) }) {
                Icon(imageVector = Icons.Default.Person, contentDescription = null)}
             }
         Row {
@@ -154,6 +154,7 @@ fun SignUpScreen(
             if (state.value?.isSuccess?.isNotEmpty() == true) {
                 val success = state.value?.isSuccess
                 Toast.makeText(context, "$success", Toast.LENGTH_LONG).show()
+                navController.navigate(Screens.SignInScreen.route)
             }
         }
     }
