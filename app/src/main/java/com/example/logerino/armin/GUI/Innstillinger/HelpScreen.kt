@@ -26,13 +26,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.logerino.R
+import com.example.logerino.navigation.Screens
 
 
 @Composable
-fun HelpScreen(){
+fun HelpScreen(navController: NavController){
     Column (modifier = Modifier.fillMaxSize()) {
-        TextButton(onClick = { /*TODO*/ }) {
+        TextButton(onClick = { Screens.InstillingerScreen.route }) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
         }
 
@@ -75,7 +77,7 @@ fun HelpScreen(){
         )
 
         Text(
-            text = "Epost: arminh@hiof.no",
+            text = "Epost: support@fastshop.no",
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(20.dp),
@@ -90,17 +92,11 @@ fun HelpScreen(){
                 .align(Alignment.CenterHorizontally)
                 .padding(20.dp),
             textAlign = TextAlign.Center,
-            fontSize = 10.sp,
+            fontSize = 15.sp,
             fontStyle = FontStyle.Italic
         )
 
 
 
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HjelpPreview(){
-    HelpScreen()
 }

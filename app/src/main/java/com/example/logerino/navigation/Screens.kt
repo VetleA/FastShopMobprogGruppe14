@@ -33,7 +33,7 @@ sealed class Screens(val route: String) {
 
     object HelpScreen : Screens(route = "Help_Screen")
 
-    object ProductSearchScreen : Screens(route = "Help_Screen")
+    object ProductSearchScreen : Screens(route = "Product_Search_Screen")
 
 
 }

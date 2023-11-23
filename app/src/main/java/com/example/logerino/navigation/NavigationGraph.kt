@@ -180,7 +180,7 @@ fun NavigationGraph(
         }
 
         composable(route = Screens.HelpScreen.route){
-            HelpScreen()
+            HelpScreen(navController)
 
         }
 
