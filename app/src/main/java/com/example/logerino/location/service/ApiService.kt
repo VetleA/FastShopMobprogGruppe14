@@ -23,6 +23,7 @@ interface ApiService {
         @Query("lat") latitude: Float,
         @Query("lng") longitude: Float,
         @Query("size") size: String,
+        @Query("km") km: String,
         @Header("Authorization") bearerToken: String
     ): Response<PhysicalStore>
 }

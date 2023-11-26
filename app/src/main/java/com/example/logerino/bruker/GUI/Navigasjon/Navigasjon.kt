@@ -5,6 +5,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -44,7 +45,7 @@ fun BottomNavigationBar(
             NavigationBar(
                 modifier = modifier,
                 containerColor = Color.Blue,
-                tonalElevation = 5.dp
+                tonalElevation = 5.dp,
             ) {
                 items.forEach { item ->
                     val selected = item.route == backStackEntry.value?.destination?.route

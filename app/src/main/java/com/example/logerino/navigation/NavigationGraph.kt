@@ -85,7 +85,7 @@ fun NavigasjonMaster(){
                 ),
                 BottomNavItem(
                     name = "Handleliste",
-                    route = Screens.HandlelisteScreen.route,
+                    route = Screens.SpesifikkHandlelisteScreen.route,
                     icon = Icons.Default.List
                 ),
                 BottomNavItem(
