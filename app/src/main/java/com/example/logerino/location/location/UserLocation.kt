@@ -21,53 +21,6 @@ import com.google.android.gms.location.*
    ======== instillinger å endre lokasjon manuelt der*/
 
 
-@Composable
-fun UserLocationComponent(context: Context, onLocationReceived: (Location?) -> Unit) {
-    val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
-
-    val locationPermissionLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
-           requestNewLocationData(context, fusedLocationClient, onLocationReceived)
-            //getLastLocation(context, fusedLocationClient, onLocationReceived)
-        } else {
-            onLocationReceived(null)
-        }
-    }
-
-    LaunchedEffect(key1 = true) {
-        if (ContextCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            requestNewLocationData(context, fusedLocationClient, onLocationReceived)
-           //getLastLocation(context, fusedLocationClient, onLocationReceived)
-        } else {
-            locationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
-        }
-    }
-}
-
-fun getLastLocation(
-    context: Context,
-    fusedLocationClient: FusedLocationProviderClient,
-    onLocationReceived: (Location?) -> Unit
-) {
-    if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-            if (location != null) {
-                onLocationReceived(location)
-            } else {
-                requestNewLocationData(context, fusedLocationClient, onLocationReceived)
-            }
-        }
-    } else {
-        onLocationReceived(null)
-    }
-}
-
 fun requestNewLocationData(
     context: Context,
     fusedLocationClient: FusedLocationProviderClient,
@@ -76,8 +29,8 @@ fun requestNewLocationData(
     if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
         val locationRequest = LocationRequest.create().apply {
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            interval = 10000
-            fastestInterval = 5000
+            interval = 1000000
+            fastestInterval = 500000
         }
 
         val locationCallback = object : LocationCallback() {
