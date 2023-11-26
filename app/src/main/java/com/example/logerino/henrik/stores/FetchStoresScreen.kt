@@ -1,7 +1,8 @@
 package GUI.Stores
 
 import GUI.UserLocation.UserLocationComponent
-import GUI.UserLocation.getLastLocation
+
+import GUI.UserLocation.requestNewLocationData
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -36,24 +37,24 @@ fun FetchStoresScreen(apiService: ApiService) {
     var isButtonEnabled by remember { mutableStateOf(true) }
 
 
-    UserLocationComponent(context) { location ->
+
+   UserLocationComponent(context) { location ->
         locationText = location?.let {
             currentLatitude = it.latitude.toFloat()
             currentLongitude = it.longitude.toFloat()
             "Lokasjon: Lat ${it.latitude}, Long ${it.longitude}"
         } ?: "Tillatelse til lokasjon ikke gitt eller lokasjon ikke tilgjengelig"
-        isButtonEnabled = true
     }
 
     Column(modifier = Modifier.padding(16.dp)) {
         Button(
             onClick = {
-                println("======>>>>")
                 isButtonEnabled = true
-                getLastLocation(context, LocationServices.getFusedLocationProviderClient(context)) {
+                requestNewLocationData(context, LocationServices.getFusedLocationProviderClient(context)) {
                     locationText = it?.let { loc ->
                         "Lokasjon: Lat ${loc.latitude}, Long ${loc.longitude}"
                     } ?: "Kan ikke hente lokasjon"
+                    println(locationText)
                 }
             },
             enabled = isButtonEnabled

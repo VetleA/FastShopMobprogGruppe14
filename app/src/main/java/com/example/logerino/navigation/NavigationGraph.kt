@@ -8,7 +8,7 @@ import GUI.Navigasjon.BottomNavigationBar
 import GUI.Produkter.ProductSearchScreen
 import GUI.Profil.ProfilScreen
 import GUI.Stores.FetchStoresScreen
-import GUI.UserLocation.LocationFetcherScreen
+//import GUI.UserLocation.LocationFetcherScreen
 import GUI.theme.BottomNavItem
 import android.annotation.SuppressLint
 import androidx.compose.material.icons.Icons
@@ -179,11 +179,11 @@ fun NavigationGraph(
             ProfilScreen(navController)
 
         }
-
+/*
         composable(route = Screens.LocationFetcherScreen.route){
             LocationFetcherScreen()
 
-        }
+        }*/
         composable(route = Screens.FetchStoresScreen.route){
             FetchStoresScreen(apiService = apiService)
 

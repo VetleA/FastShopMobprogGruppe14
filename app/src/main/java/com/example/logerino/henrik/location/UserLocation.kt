@@ -29,6 +29,7 @@ fun UserLocationComponent(context: Context, onLocationReceived: (Location?) -> U
         contract = ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
+           //requestNewLocationData(context, fusedLocationClient, onLocationReceived)
             getLastLocation(context, fusedLocationClient, onLocationReceived)
         } else {
             onLocationReceived(null)
@@ -41,7 +42,8 @@ fun UserLocationComponent(context: Context, onLocationReceived: (Location?) -> U
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            getLastLocation(context, fusedLocationClient, onLocationReceived)
+            //requestNewLocationData(context, fusedLocationClient, onLocationReceived)
+           getLastLocation(context, fusedLocationClient, onLocationReceived)
         } else {
             locationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
