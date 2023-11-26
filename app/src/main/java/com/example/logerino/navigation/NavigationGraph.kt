@@ -60,6 +60,10 @@ fun NavigasjonMaster(){
             // Show BottomBar
             bottomBarState.value = false
         }
+        Screens.HjemScreen.route -> {
+            // Show BottomBar
+            bottomBarState.value = true
+        }
     }
 
 
@@ -97,7 +101,8 @@ fun NavigasjonMaster(){
                     icon = Icons.Default.Settings
                 ),
             ),
-                navController =navController ,
+                navController =navController,
+                bottomBarState = bottomBarState,
                 onItemClick ={
                     navController.navigate(it.route)
                 }
@@ -117,18 +122,6 @@ fun NavigationGraph(
     val apiService: ApiService by lazy {
         ApiServiceModule.createApiService()
     }
-
-    val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-
-
-    when (navBackStackEntry?.destination?.route) {
-        Screens.SignInScreen.route -> {
-            bottomBarState.value = false
-
-        }
-    }
-
 
     NavHost(
         navController = navController,
@@ -229,5 +222,3 @@ inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(navControll
     }
     return  hiltViewModel(parentEntry)
 }
-
-
