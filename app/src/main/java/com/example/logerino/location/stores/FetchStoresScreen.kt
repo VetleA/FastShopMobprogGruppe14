@@ -38,13 +38,14 @@ fun FetchStoresScreen(apiService: ApiService) {
 
 
 
-   UserLocationComponent(context) { location ->
+   /*UserLocationComponent(context) { location ->
         locationText = location?.let {
             currentLatitude = it.latitude.toFloat()
             currentLongitude = it.longitude.toFloat()
             "Lokasjon: Lat ${it.latitude}, Long ${it.longitude}"
         } ?: "Tillatelse til lokasjon ikke gitt eller lokasjon ikke tilgjengelig"
-    }
+    }*/
+
 
     Column(modifier = Modifier.padding(16.dp)) {
         Button(
@@ -52,6 +53,8 @@ fun FetchStoresScreen(apiService: ApiService) {
                 isButtonEnabled = true
                 requestNewLocationData(context, LocationServices.getFusedLocationProviderClient(context)) {
                     locationText = it?.let { loc ->
+                        currentLatitude = it.latitude.toFloat()
+                        currentLongitude = it.longitude.toFloat()
                         "Lokasjon: Lat ${loc.latitude}, Long ${loc.longitude}"
                     } ?: "Kan ikke hente lokasjon"
                     println(locationText)
