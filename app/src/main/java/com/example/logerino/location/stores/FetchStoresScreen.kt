@@ -1,6 +1,6 @@
 package GUI.Stores
 
-import GUI.UserLocation.UserLocationComponent
+
 
 import GUI.UserLocation.requestNewLocationData
 import androidx.compose.foundation.layout.Column
@@ -36,15 +36,6 @@ fun FetchStoresScreen(apiService: ApiService) {
     var currentLongitude by remember { mutableStateOf<Float?>(null) }
     var isButtonEnabled by remember { mutableStateOf(true) }
 
-
-
-   /*UserLocationComponent(context) { location ->
-        locationText = location?.let {
-            currentLatitude = it.latitude.toFloat()
-            currentLongitude = it.longitude.toFloat()
-            "Lokasjon: Lat ${it.latitude}, Long ${it.longitude}"
-        } ?: "Tillatelse til lokasjon ikke gitt eller lokasjon ikke tilgjengelig"
-    }*/
 
 
     Column(modifier = Modifier.padding(16.dp)) {
