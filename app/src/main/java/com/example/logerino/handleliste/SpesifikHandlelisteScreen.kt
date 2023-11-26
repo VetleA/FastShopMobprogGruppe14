@@ -84,7 +84,7 @@ fun SpesifikkHandlelisteScreen(
 
 
                 Text(
-                    text = tittel,
+                    text = getData.title.toString(),
                     style = MaterialTheme.typography.headlineLarge,
                     fontWeight = FontWeight.Bold,
                     maxLines = 1,
