@@ -31,11 +31,15 @@ fun FetchStoresScreen(apiService: ApiService) {
     var errorMessage by remember { mutableStateOf<String?>(null) }
     val context = LocalContext.current
     var locationText by remember { mutableStateOf("Trykk på knappen for å hente lokasjon") }
+    var currentLatitude by remember { mutableStateOf<Float?>(null) }
+    var currentLongitude by remember { mutableStateOf<Float?>(null) }
     var isButtonEnabled by remember { mutableStateOf(true) }
 
 
     UserLocationComponent(context) { location ->
         locationText = location?.let {
+            currentLatitude = it.latitude.toFloat()
+            currentLongitude = it.longitude.toFloat()
             "Lokasjon: Lat ${it.latitude}, Long ${it.longitude}"
         } ?: "Tillatelse til lokasjon ikke gitt eller lokasjon ikke tilgjengelig"
         isButtonEnabled = true
@@ -61,27 +65,37 @@ fun FetchStoresScreen(apiService: ApiService) {
         Button(
             onClick = {
                 coroutineScope.launch {
-                    try {
-                        val response = apiService.getPhysicalStores(
-                            59.12887F,
-                            11.352395F,
-                            "Bearer Y6Z6BUFOvFReAKkZijrKkhk9f8MKZMhUAunvOLHQ"
-                        )
-                        println("=====>> Funker før IF" + response.isSuccessful)
-                        if (response.isSuccessful) {
-                            val result = response.body()
-                            if (result != null) {
-                                stores = result.data
-                                errorMessage = null
-                            } else {
-                                errorMessage = "Ingen butikker innenfor en radius på 5km"
+                    currentLatitude?.let {latitude ->
+                        currentLongitude?.let { longitude ->
+                            try {
+                                val response = apiService.getPhysicalStores(
+                                    latitude,
+                                    longitude,
+                                    "Bearer Y6Z6BUFOvFReAKkZijrKkhk9f8MKZMhUAunvOLHQ"
+                                )
+                                if (response.isSuccessful) {
+                                    val result = response.body()
+                                    if (result != null) {
+                                        stores = result.data
+                                        errorMessage = null
+                                    }
+                                    else {
+                                        errorMessage = "Ingen butikker innenfor en radius på 5km"
+                                    }
+                                }
+                                else {
+                                    errorMessage = "Feil: ${response.code()}"
+                                }
+                            } catch (e: Exception) {
+                                errorMessage = "${e.message}"
                             }
-                        } else {
-                            errorMessage = "Feil: ${response.code()}"
+                        }?: run {
+                            errorMessage = "Lengdegrad ikke tilgjengelig"
                         }
-                    } catch (e: Exception) {
-                        errorMessage = "Unntak fanget: ${e.message}"
+                    }?: run {
+                        errorMessage = "Breddegrad ikke tilgjengelig"
                     }
+
                 }
             },
             modifier = Modifier
@@ -100,6 +114,5 @@ fun FetchStoresScreen(apiService: ApiService) {
             StoreResultList(stores)
         }
     }
-
 
 }

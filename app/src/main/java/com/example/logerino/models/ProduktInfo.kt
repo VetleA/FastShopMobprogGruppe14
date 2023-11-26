@@ -3,9 +3,10 @@ package model
 import com.google.gson.annotations.SerializedName
 
 /*Gjelder alle data klassens.
-  Sendt eksempel response fra apiet til https://json2kt.com/
+  Sendt eksempel response hentet fra kassalapp apiet til https://json2kt.com/
   som konverterer JSON til kotlin data class
 */
+
 data class ProduktInfo(
     @SerializedName("data"  ) var data  : ArrayList<Data> = arrayListOf(),
     @SerializedName("links" ) var links : Links?          = Links(),

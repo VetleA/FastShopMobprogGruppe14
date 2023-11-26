@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import service.ApiService
 
 /*Retrofit er en HTTP klient for android.
-* Hjelpe med å koble seg til et eksternt API*/
+* Hjelper med å koble seg til et eksternt API*/
 object ApiServiceModule {
     private const val BASE_URL = "https://kassal.app/api/v1/"
 

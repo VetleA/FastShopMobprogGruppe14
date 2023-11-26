@@ -30,10 +30,8 @@ fun UserLocationComponent(context: Context, onLocationReceived: (Location?) -> U
     ) { isGranted: Boolean ->
         if (isGranted) {
             getLastLocation(context, fusedLocationClient, onLocationReceived)
-            println("======>>>Funker denne IF")
         } else {
             onLocationReceived(null)
-            println("======>>>Funker denne Else")
         }
     }
 
@@ -59,11 +57,8 @@ fun getLastLocation(
         fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
             if (location != null) {
                 onLocationReceived(location)
-                println("======>>>Funker denne IF!!!!!!!")
             } else {
-                // Her kan du implementere logikk for å be om nye lokasjonsoppdateringer
                 requestNewLocationData(context, fusedLocationClient, onLocationReceived)
-                println("======>>>Funker denne else!!!!!!!!!!")
             }
         }
     } else {
