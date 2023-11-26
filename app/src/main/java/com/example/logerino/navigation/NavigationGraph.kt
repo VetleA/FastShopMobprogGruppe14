@@ -8,7 +8,7 @@ import GUI.Navigasjon.BottomNavigationBar
 import GUI.Produkter.ProductSearchScreen
 import GUI.Profil.ProfilScreen
 import GUI.Stores.FetchStoresScreen
-//import GUI.UserLocation.LocationFetcherScreen
+import GUI.UserLocation.LocationFetcherScreen
 import GUI.theme.BottomNavItem
 import android.annotation.SuppressLint
 import androidx.compose.material.icons.Icons
@@ -34,6 +34,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navigation
 import com.example.logerino.detail.DetailScreen
 import com.example.logerino.handleliste.HandlelisteScreen
 import com.example.logerino.login.SignInScreen
@@ -55,15 +56,18 @@ fun NavigasjonMaster(){
     val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
+    //Gir oss muligheten til å ikke vise navbar på login og opprett bruker siden
     when (navBackStackEntry?.destination?.route) {
         Screens.SignInScreen.route -> {
-            // Show BottomBar
+            bottomBarState.value = false
+        }
+        Screens.SignUpScreen.route -> {
             bottomBarState.value = false
         }
         Screens.HjemScreen.route -> {
-            // Show BottomBar
             bottomBarState.value = true
         }
+
     }
 
 
@@ -125,93 +129,97 @@ fun NavigationGraph(
 
     NavHost(
         navController = navController,
-        startDestination = Screens.SignInScreen.route
+        startDestination = Graph.HOME
     ) {
-        composable(route = Screens.SignInScreen.route) {
-            SignInScreen(navController)
 
-        }
-        composable(route = Screens.SignUpScreen.route) {
-            SignUpScreen(navController)
+        navigation(route = Graph.AUTH, startDestination = Screens.SignInScreen.route){
+            composable(route = Screens.SignInScreen.route) {
+                SignInScreen(navController)
 
-        }
-        composable(route = Screens.UpdateInfoScreen.route) {
-            UpdateUserInfoScreen(navController)
-
-        }
-        composable(route = Screens.UserInfoScreen.route) {
-            UserInfoScreen(navController)
-
-        }
-        composable(route = Screens.HandlelisteScreen.route) {
-            HandlelisteScreen(
-                navController,
-                handlelisteViewModel = HandlelisteViewModel()
-            )
-        }
-        composable(route = Screens.DetailScreen.route){
-            DetailScreen(detailViewModel = null, handlelisteId = "") {
+            }
+            composable(route = Screens.SignUpScreen.route) {
+                SignUpScreen(navController)
 
             }
         }
 
-        composable(route = Screens.ListScreen.route){
-            ListScreen(navController)
+        navigation(route = Graph.HOME, startDestination = Screens.HjemScreen.route){
+            composable(route = Screens.UpdateInfoScreen.route) {
+                UpdateUserInfoScreen(navController)
 
+            }
+            composable(route = Screens.UserInfoScreen.route) {
+                UserInfoScreen(navController)
+
+            }
+            composable(route = Screens.HandlelisteScreen.route) {
+                HandlelisteScreen(
+                    navController,
+                    handlelisteViewModel = HandlelisteViewModel()
+                )
+            }
+            composable(route = Screens.DetailScreen.route){
+                DetailScreen(detailViewModel = null, handlelisteId = "") {
+
+                }
+            }
+
+            composable(route = Screens.ListScreen.route){
+                ListScreen(navController)
+
+            }
+
+            composable(route = Screens.OpprettHandlelisteScreen.route){
+                EndreHandlelisteScreen(navController)
+
+            }
+
+            composable(route = Screens.SpesifikkHandlelisteScreen.route){
+                SpesifikkHandlelisteScreen(navController)
+
+            }
+
+            composable(route = Screens.HjemScreen.route){
+                HjemSkjerm(navController)
+
+            }
+
+            composable(route = Screens.ProfilScreen.route){
+                ProfilScreen(navController)
+
+            }
+
+            composable(route = Screens.LocationFetcherScreen.route){
+                LocationFetcherScreen()
+
+            }
+            composable(route = Screens.FetchStoresScreen.route){
+                FetchStoresScreen(apiService = apiService)
+
+            }
+            composable(route = Screens.InstillingerScreen.route){
+                InnstillingerScreen(navController)
+
+            }
+
+            composable(route = Screens.AboutScreen.route){
+                AboutScreen()
+
+            }
+
+            composable(route = Screens.HelpScreen.route){
+                HelpScreen(navController)
+
+            }
+
+            composable(route = Screens.ProductSearchScreen.route){
+                ProductSearchScreen(apiService = apiService)
+
+            }
         }
-
-        composable(route = Screens.OpprettHandlelisteScreen.route){
-            EndreHandlelisteScreen(navController)
-
-        }
-
-        composable(route = Screens.SpesifikkHandlelisteScreen.route){
-            SpesifikkHandlelisteScreen(navController)
-
-        }
-
-        composable(route = Screens.HjemScreen.route){
-            HjemSkjerm(navController)
-
-        }
-
-        composable(route = Screens.ProfilScreen.route){
-            ProfilScreen(navController)
-
-        }
-/*
-        composable(route = Screens.LocationFetcherScreen.route){
-            LocationFetcherScreen()
-
-        }*/
-        composable(route = Screens.FetchStoresScreen.route){
-            FetchStoresScreen(apiService = apiService)
-
-        }
-        composable(route = Screens.InstillingerScreen.route){
-            InnstillingerScreen(navController)
-
-        }
-
-        composable(route = Screens.AboutScreen.route){
-            AboutScreen()
-
-        }
-
-        composable(route = Screens.HelpScreen.route){
-            HelpScreen(navController)
-
-        }
-
-        composable(route = Screens.ProductSearchScreen.route){
-            ProductSearchScreen(apiService = apiService)
-
-        }
-
-
-
     }
 }
+
 
 // <T> Gir oss her muligheten til å sende inn en viewmodel som ikke er spesifisert
 @Composable

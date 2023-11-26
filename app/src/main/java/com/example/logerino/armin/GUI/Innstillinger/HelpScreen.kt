@@ -34,7 +34,7 @@ import com.example.logerino.navigation.Screens
 @Composable
 fun HelpScreen(navController: NavController){
     Column (modifier = Modifier.fillMaxSize()) {
-        TextButton(onClick = { Screens.InstillingerScreen.route }) {
+        TextButton(onClick = { navController.navigate(Screens.InstillingerScreen.route) }) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
         }
 

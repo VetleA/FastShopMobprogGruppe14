@@ -26,6 +26,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.logerino.navigation.Screens
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 
 @Composable
 fun InnstillingerScreen(navController: NavController) {
@@ -92,7 +94,9 @@ fun InnstillingerScreen(navController: NavController) {
                 .align(Alignment.CenterHorizontally)
                 .padding(10.dp)
         )
-        TextButton(onClick = { navController.navigate(Screens.SignInScreen.route) }) {
+        TextButton(onClick = {
+            navController.navigate(Screens.SignInScreen.route)
+            FirebaseAuth.getInstance().signOut()}) {
             Icon(imageVector = Icons.Default.Clear, contentDescription = null)
             Text(text = "Logg ut")
             Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = null)
