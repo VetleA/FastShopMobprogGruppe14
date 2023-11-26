@@ -22,6 +22,7 @@ interface ApiService {
     suspend fun getPhysicalStores(
         @Query("lat") latitude: Float,
         @Query("lng") longitude: Float,
+        @Query("size") size: String,
         @Header("Authorization") bearerToken: String
     ): Response<PhysicalStore>
 }

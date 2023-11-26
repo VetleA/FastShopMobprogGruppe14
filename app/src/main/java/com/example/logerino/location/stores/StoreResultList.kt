@@ -44,5 +44,7 @@ fun StoreResultItem(store: StoreData) {
         Text(text = "Navn på butikk: ${store.name ?: "N/A"}")
         Spacer(modifier = Modifier.height(2.dp))
         Text(text = "Adresse: ${store.address ?: "N/A"}")
+        Spacer(modifier = Modifier.height(2.dp))
+        Text(text = "Åpningstider: ${store.openingHours ?: "N/A"}")
     }
 }
