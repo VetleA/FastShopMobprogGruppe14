@@ -27,12 +27,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.logerino.R
+import com.example.logerino.navigation.Screens
 
 @Composable
-fun AboutScreen(){
+fun AboutScreen(navController: NavController){
     Column (modifier = Modifier.fillMaxSize()){
-        TextButton(onClick = { /*TODO*/ }) {
+        TextButton(onClick = { navController.navigate(Screens.InstillingerScreen.route) }) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
         }
 
@@ -98,7 +100,6 @@ fun AboutScreen(){
             fontSize = 15.sp,
             fontStyle = FontStyle.Italic
         )
-
         Image(
             painter = painterResource(id = R.drawable.hiof), contentScale = ContentScale.Crop,
             contentDescription = null,
@@ -112,7 +113,6 @@ fun AboutScreen(){
                     CircleShape
                 )
         )
-
         Text(
             text = "Utviklet ved Høgskolen i Østfold",
             modifier = Modifier
@@ -128,18 +128,5 @@ fun AboutScreen(){
                 .align(Alignment.CenterHorizontally)
                 .padding(45.dp)
         )
-
-
-
-
-
     }
-}
-
-
-
-@Preview(showBackground = true)
-@Composable
-fun AboutPreview(){
-    AboutScreen()
 }

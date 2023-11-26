@@ -197,7 +197,7 @@ fun NavigationGraph(
             }
 
             composable(route = Screens.AboutScreen.route){
-                AboutScreen()
+                AboutScreen(navController)
 
             }
 
