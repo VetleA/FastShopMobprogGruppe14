@@ -15,6 +15,8 @@ interface ApiService {
     @GET("products")
     suspend fun searchProducts(
         @Query("search") searchQuery: String,
+        @Query("size") searchNumber: String,
+        @Query("sort") searchSort: String,
         @Header("Authorization") bearerToken: String
     ): Response<ProduktInfo>
 

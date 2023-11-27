@@ -2,12 +2,16 @@ package GUI.Produkter
 
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
@@ -23,8 +27,20 @@ fun ProductSearchScreen(apiService: ApiService) {
     var searchResults by remember { mutableStateOf<List<Data>>(emptyList()) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
 
+    //Dropdown meny for antall varer i spørring
+    var numberOfVarerSend by remember { mutableStateOf("5") }
+    val numberOfVarer = arrayOf("1", "5", "10", "20", "25")
+    var selectedVareNumber by remember { mutableStateOf(numberOfVarer[0]) }
+    var expanded by remember { mutableStateOf(false) }
+
+    //Dropdown meny for pris lav/høy i spørring
+    var prisOfVarerSend by remember { mutableStateOf("price_desc") }
+    val prisOfVarer = arrayOf("price_asc", "price_desc")
+    var selectedPrisNumber by remember { mutableStateOf(numberOfVarer[0]) }
+    var expanded2 by remember { mutableStateOf(false) }
+
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.padding(16.dp)
     ) {
 
         OutlinedTextField(
@@ -36,12 +52,92 @@ fun ProductSearchScreen(apiService: ApiService) {
             label = { Text(text = "Søk") }
         )
 
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(text = "Antall varer du ønsker i søk")
+
+        ExposedDropdownMenuBox(
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            expanded = expanded,
+            onExpandedChange = {
+                expanded = !expanded
+            }
+        ) {
+            TextField(
+                value = selectedVareNumber,
+                onValueChange = {},
+                readOnly = true,
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                modifier = Modifier.menuAnchor()
+            )
+
+            ExposedDropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+                numberOfVarer.forEach { item ->
+                    DropdownMenuItem(
+                        text = { Text(text = item) },
+                        onClick = {
+                            selectedVareNumber = item
+                            numberOfVarerSend = item
+                            expanded = false
+                        }
+                    )
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(text = "Pris")
+
+        ExposedDropdownMenuBox(
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            expanded = expanded2,
+            onExpandedChange = {
+                expanded2 = !expanded2
+            }
+        ) {
+            TextField(
+                value = selectedPrisNumber,
+                onValueChange = {},
+                readOnly = true,
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded2) },
+                modifier = Modifier.menuAnchor()
+            )
+
+            ExposedDropdownMenu(
+                expanded = expanded2,
+                onDismissRequest = { expanded2 = false }
+            ) {
+                prisOfVarer.forEach { item ->
+                    DropdownMenuItem(
+                        text = { Text(text = item) },
+                        onClick = {
+                            selectedPrisNumber = item
+                            prisOfVarerSend = item
+                            expanded2 = false
+                        }
+                    )
+                }
+            }
+        }
+
+
+
+
         Button(
             onClick = { //
                 if (searchQuery.isNotEmpty()) {
                     coroutineScope.launch {
                         try {
-                            val response = apiService.searchProducts(searchQuery, "Bearer PGWrnby4M2VEvveaCiAJCHecS2hrm4d8LnbAHylo")
+                            val response = apiService.searchProducts(
+                                searchQuery,
+                                searchNumber = numberOfVarerSend,
+                                searchSort = prisOfVarerSend,
+                                "Bearer PGWrnby4M2VEvveaCiAJCHecS2hrm4d8LnbAHylo")
                             println("=========>>>" + response.isSuccessful)
                             if (response.isSuccessful) {
                                 val result = response.body()

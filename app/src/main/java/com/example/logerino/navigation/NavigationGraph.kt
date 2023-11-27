@@ -128,7 +128,7 @@ fun NavigationGraph(
 
     NavHost(
         navController = navController,
-        startDestination = Graph.HOME
+        startDestination = Graph.AUTH
     ) {
 
         navigation(route = Graph.AUTH, startDestination = Screens.SignInScreen.route){

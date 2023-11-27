@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.logerino.navigation.Screens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -95,6 +96,7 @@ fun UpdateUserInfoScreen(
             {
                 userViewModel.updateUserInfoFromFireStore(adresse, fornavn, etternavn)
                 Toast.makeText(context, "Informasjon er oppdatert", Toast.LENGTH_SHORT).show()
+                navController.navigate(Screens.ProfilScreen.route)
             }else {
                 Toast.makeText(context, "Du må fylle ut alle feltene", Toast.LENGTH_SHORT).show()
             } }) {

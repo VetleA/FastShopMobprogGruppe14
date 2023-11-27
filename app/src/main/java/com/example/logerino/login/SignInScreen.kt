@@ -131,7 +131,7 @@ fun SignInScreen(
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
 
             Spacer(modifier = Modifier.width(20.dp))
-            IconButton(onClick = {}) {
+            IconButton(onClick = {navController.navigate(Screens.HjemScreen.route)}) {
                 Icon(imageVector = Icons.Default.Person, contentDescription = null)
 
             }

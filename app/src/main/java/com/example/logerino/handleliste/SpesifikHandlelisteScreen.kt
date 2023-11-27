@@ -44,8 +44,6 @@ fun SpesifikkHandlelisteScreen(
 ) {
     val getData = handlelisteViewModel.state.value
     val snackbarHostState = remember { SnackbarHostState() }
-    var listSearch by remember { mutableStateOf("") }
-    var ost by remember { mutableStateOf("") }
 
     Scaffold(snackbarHost = { SnackbarHost(snackbarHostState) }) { padding ->
         Column(

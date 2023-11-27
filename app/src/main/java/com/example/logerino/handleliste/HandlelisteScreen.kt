@@ -38,6 +38,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.logerino.navigation.Screens
 import kotlinx.coroutines.launch
 
 
@@ -86,6 +87,7 @@ fun HandlelisteScreen(
             )
 
             Button(onClick = {handlelisteViewModel.addDataToFireStore(tittel, vare)
+                navController.navigate(Screens.SpesifikkHandlelisteScreen.route)
             Toast.makeText(context, "Handleliste lagt til!", Toast.LENGTH_SHORT).show()}) {
                 Text(text = "Lagre handleliste")
             }
