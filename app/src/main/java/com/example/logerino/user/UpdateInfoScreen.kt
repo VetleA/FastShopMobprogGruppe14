@@ -35,14 +35,12 @@ fun UpdateUserInfoScreen(
     navController: NavController,
     userViewModel: UserViewModel = viewModel()
 ) {
-
     val getData = userViewModel.state.value
     var adresse by rememberSaveable { mutableStateOf("") }
     var fornavn by rememberSaveable { mutableStateOf("") }
     var etternavn by rememberSaveable { mutableStateOf("") }
     val snackbarHostState = remember { SnackbarHostState() }
     val context = LocalContext.current
-
 
     Scaffold(snackbarHost = { SnackbarHost(snackbarHostState) }) {padding ->
 

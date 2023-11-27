@@ -90,52 +90,6 @@ fun BottomNavigationBar(
     )
 }
 
-
-
-
-
-
-
-
-
-
-
-
-/*
- Scaffold(
-            bottomBar = {BottomBar(navController = navController,bottomBarState = bottomBarState)},
-            content = {
-                NavHost(
-                    navController = navController,
-                    startDestination = NavigationItem.Cars.route,
-                ) {
-                    composable(NavigationItem.Cars.route) {
-                        CarsScreen(
-                            navController = navController,
-                        )
-                    }
-                    composable(NavigationItem.Bikes.route) {
-                        BikesScreen(
-                            navController = navController
-                        )
-                    }
-                    composable(NavigationItem.Settings.route) {
-                        SettingsScreen(
-                            navController = navController,
-                        )
-                    }
-                    composable(NavigationItem.CarDetails.route) {
-                        CarDetailsScreen(
-                            navController = navController,
-                        )
-                    }
-                }
-            }
-        )
-    }
- */
-
-
 /////////Brukt denne Youtube videoen under som mal for navigasjonsbaren
 /* ======== KILDE: https://www.youtube.com/watch?v=4xyRnIntwTo ====== /
    ======== og det er blitt gjort en del endring fra orginal youtube video */

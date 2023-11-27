@@ -21,8 +21,6 @@ class AuthRepositoryImpl @Inject constructor(
         }.catch {
             emit(Resource.Error(it.message.toString()))
         }
-
-
     }
 
     override fun registerUser(email: String, password: String): Flow<Resource<AuthResult>> {

@@ -66,7 +66,6 @@ fun NavigasjonMaster(){
         Screens.HjemScreen.route -> {
             bottomBarState.value = true
         }
-
     }
 
 
@@ -130,18 +129,14 @@ fun NavigationGraph(
         navController = navController,
         startDestination = Graph.AUTH
     ) {
-
         navigation(route = Graph.AUTH, startDestination = Screens.SignInScreen.route){
             composable(route = Screens.SignInScreen.route) {
                 SignInScreen(navController)
-
             }
             composable(route = Screens.SignUpScreen.route) {
                 SignUpScreen(navController)
-
             }
         }
-
         navigation(route = Graph.HOME, startDestination = Screens.HjemScreen.route){
             composable(route = Screens.UpdateInfoScreen.route) {
                 UpdateUserInfoScreen(navController)

@@ -34,7 +34,6 @@ class SignInViewModel @Inject constructor(
                     _signInState.send(SignInState(isError = result.message))
                 }
             }
-
         }
     }
 }

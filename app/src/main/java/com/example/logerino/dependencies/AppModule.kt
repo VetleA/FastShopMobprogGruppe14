@@ -14,7 +14,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-
     //Gir oss en instance av Firebase authentication
     @Provides
     @Singleton

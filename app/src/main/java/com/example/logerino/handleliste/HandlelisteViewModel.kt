@@ -122,10 +122,6 @@ class HandlelisteViewModel : ViewModel() {
 
     }
 
-
-
-
-
     fun getMultipleDocumentsFromFireStore()
     {
         db.collection("basket")
@@ -140,20 +136,9 @@ class HandlelisteViewModel : ViewModel() {
                 Log.w(TAG, "Error getting documents: ", exception)
             }
     }
-
-
-
-
 }
-
-
 
 data class Handleliste(
     val title: String? = null,
     val varer: String? = null
 )
-
-
-
-
-

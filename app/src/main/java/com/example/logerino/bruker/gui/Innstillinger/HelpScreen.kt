@@ -95,8 +95,5 @@ fun HelpScreen(navController: NavController){
             fontSize = 15.sp,
             fontStyle = FontStyle.Italic
         )
-
-
-
     }
 }

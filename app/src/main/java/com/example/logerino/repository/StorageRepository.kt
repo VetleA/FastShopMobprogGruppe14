@@ -19,7 +19,6 @@ class StorageRepository(){
 
     fun user() = Firebase.auth.currentUser
     fun hasUser():Boolean = Firebase.auth.currentUser != null
-
     fun getUserID():String = Firebase.auth.currentUser?.uid.orEmpty()
 
     private val handlelisteRef:CollectionReference = Firebase

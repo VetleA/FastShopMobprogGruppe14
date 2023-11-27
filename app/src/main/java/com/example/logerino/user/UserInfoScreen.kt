@@ -23,16 +23,12 @@ fun UserInfoScreen(
     navController: NavController,
     dbViewModel: UserViewModel = viewModel()
 ) {
-
     val getData = dbViewModel.state.value
-
-
 
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center) {
-
 
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -43,15 +39,10 @@ fun UserInfoScreen(
             Text(text = "Fornavn: ${getData.fornavn}")
             Text(text = "Etternavn: ${getData.etternavn}")
 
-
             Button(onClick = { navController.navigate(Screens.UpdateInfoScreen.route) }) {
                 Text(text = "Oppdater info")
 
             }
-
         }
-
-
     }
-
 }

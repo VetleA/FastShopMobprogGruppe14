@@ -33,5 +33,4 @@ sealed class Screens(val route: String) {
 
     object ProductSearchScreen : Screens(route = "Product_Search_Screen")
 
-
 }

@@ -40,7 +40,6 @@ fun FetchStoresScreen(apiService: ApiService) {
     var currentLongitude by remember { mutableStateOf<Float?>(null) }
     var isButtonEnabled by remember { mutableStateOf(true) }
 
-
     //Dropdown meny for antall butikker i søk
     var numberOfStoresSend by remember { mutableStateOf("1") }
     val numberOfStores = arrayOf("1", "5", "10", "30")
@@ -52,16 +51,6 @@ fun FetchStoresScreen(apiService: ApiService) {
     val numberOfKmRadiusStores = arrayOf("1", "5", "10", "20", "25", "30", "50", "100")
     var selectedRadius by remember { mutableStateOf(numberOfKmRadiusStores[0]) }
     var expanded2 by remember { mutableStateOf(false) }
-
-
-
-   /*UserLocationComponent(context) { location ->
-        locationText = location?.let {
-            currentLatitude = it.latitude.toFloat()
-            currentLongitude = it.longitude.toFloat()
-            "Lokasjon: Lat ${it.latitude}, Long ${it.longitude}"
-        } ?: "Tillatelse til lokasjon ikke gitt eller lokasjon ikke tilgjengelig"
-    }*/
 
 
     Column(modifier = Modifier.padding(16.dp)) {

@@ -64,12 +64,7 @@ fun EndreHandlelisteScreen(
             label = { Text(text = "Handleliste") }
         )
 
-
-
-
-
-
-        Button(onClick = { handlelisteViewModel }) {
+        Button(onClick = { }) {
             Text(text = "Lagre handleliste")
 
         }

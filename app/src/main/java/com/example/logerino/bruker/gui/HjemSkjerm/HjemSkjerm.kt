@@ -93,35 +93,5 @@ fun HjemSkjerm(navController: NavController){
             Text(text = "Mine nærbutikker")
             Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = null)
         }
-
-
-        /*
-        Text(
-            text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
-                    "Mauris volutpat egestas eros, in aliquet eros tincidunt in. " +
-                    "Praesent est purus, fermentum in posuere in, accumsan a nunc. " +
-                    "Aenean viverra fringilla ipsum, vitae ullamcorper felis aliquet molestie. " +
-                    "Vivamus luctus, felis et placerat fermentum, justo ex molestie eros, " +
-                    "id venenatis est elit quis lectus. Etiam tempor, quam vitae eleifend iaculis, " +
-                    "orci massa lacinia eros, id ullamcorper nisl lacus at nulla. Etiam posuere " +
-                    "nibh ac odio suscipit rhoncus. Quisque semper elementum diam, vel placerat " +
-                    "mi accumsan sit amet. Nullam accumsan augue ultrices pulvinar congue. " +
-                    "Fusce varius, velit sed luctus mollis, ex dolor feugiat massa, ut commodo " +
-                    "nulla ligula nec justo. Phasellus fringilla nibh nec mattis vestibulum. " +
-                    "Vivamus efficitur placerat gravida. Praesent eget purus consectetur, " +
-                    "tincidunt elit non, vehicula nibh.",
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(20.dp),
-            textAlign = TextAlign.Center,
-            fontSize = 15.sp,
-            fontStyle = FontStyle.Italic
-        )
-
-         */
-
-
-
-
     }
 }
