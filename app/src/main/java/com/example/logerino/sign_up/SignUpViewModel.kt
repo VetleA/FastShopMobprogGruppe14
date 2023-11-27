@@ -19,6 +19,8 @@ class SignUpViewModel @Inject constructor(
     val _signUpState  = Channel<SignInState>()
     val signUpState  = _signUpState.receiveAsFlow()
 
+    //Gir tilbakemelding på om opprettelsen av bruker
+    // er godkjent på bakgrunn av funksjonene i repository
     fun registerUser(email:String, password:String) = viewModelScope.launch {
         repository.registerUser(email, password).collect{result ->
             when(result){

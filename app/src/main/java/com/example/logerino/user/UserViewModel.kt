@@ -14,6 +14,7 @@ class UserViewModel : ViewModel(){
     val state = mutableStateOf(User())
     val db = FirebaseFirestore.getInstance()
 
+    // Henter data for bruker ved oppstart av programmet
     private fun hentData(){
         viewModelScope.launch {
             state.value = getDataFromFirebase()
@@ -42,7 +43,7 @@ class UserViewModel : ViewModel(){
         return about
     }
 
-
+    //Oppdaterer informasjon om brukeren
     fun updateUserInfoFromFireStore(adresse: String?, fornavn: String?, etternavn: String?)
     {
         val userRef = db.collection("about").document("M1emKphn8fK5QUcwXJFO")

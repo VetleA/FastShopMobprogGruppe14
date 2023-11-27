@@ -139,6 +139,7 @@ fun SignInScreen(
                 Text(text = "Anonym innlogging")
             }
 
+            //Sender brukeren videre i applikasjonen dersom innlogging er godkjent
             LaunchedEffect(key1 = state.value?.isSuccess) {
                 scope.launch {
                     if (state.value?.isSuccess?.isNotEmpty() == true) {
@@ -148,7 +149,7 @@ fun SignInScreen(
                     }
                 }
             }
-
+            //Sender feilmelding dersom det er feil ved innlogging
             LaunchedEffect(key1 = state.value?.isError) {
                 scope.launch {
                     if (state.value?.isError?.isNotEmpty() == true) {

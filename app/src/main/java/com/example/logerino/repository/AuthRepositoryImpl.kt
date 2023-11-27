@@ -12,6 +12,7 @@ import javax.inject.Inject
 class AuthRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth
 ): AuthRepository {
+    //Funksjon for å logge inn bruker med Firebase Auth
     override fun loginUser(email: String, password: String): Flow<Resource<AuthResult>> {
         return flow {
             emit(Resource.Loading())
@@ -22,6 +23,7 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
+    //Funksjon for å opprette bruker med Firebase Auth
     override fun registerUser(email: String, password: String): Flow<Resource<AuthResult>> {
         return flow {
             emit(Resource.Loading())

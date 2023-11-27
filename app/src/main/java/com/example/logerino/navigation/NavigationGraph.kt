@@ -66,7 +66,7 @@ fun NavigasjonMaster(){
         }
     }
 
-
+    //Bottombar
     Scaffold(
         bottomBar = {
             BottomNavigationBar( items = listOf(

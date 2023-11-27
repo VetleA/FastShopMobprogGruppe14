@@ -148,6 +148,7 @@ fun SignUpScreen(
 
         }
 
+    //Dersom opprettelse av konto er er suksessfull vil denne delen sende brukeren videre
     LaunchedEffect(key1 = state.value?.isSuccess) {
         scope.launch {
             if (state.value?.isSuccess?.isNotEmpty() == true) {
@@ -157,6 +158,7 @@ fun SignUpScreen(
             }
         }
     }
+    //Dersom opprettelse av konto feilet vil brukeren få en feilmelding
     LaunchedEffect(key1 = state.value?.isError) {
         scope.launch {
             if (state.value?.isError?.isNotBlank() == true) {

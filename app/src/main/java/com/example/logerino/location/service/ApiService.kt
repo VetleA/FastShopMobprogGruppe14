@@ -12,6 +12,7 @@ import retrofit2.http.Query
 * @Query er en retrofit annotasjon som legger ved forspørselparameter
 * @Header legger til HTTP-header i forspørselen. Håndterer autentisering */
 interface ApiService {
+    //Henter produkter fra API
     @GET("products")
     suspend fun searchProducts(
         @Query("search") searchQuery: String,
@@ -20,6 +21,7 @@ interface ApiService {
         @Header("Authorization") bearerToken: String
     ): Response<ProduktInfo>
 
+    //Henter butikker fra API
     @GET("physical-stores")
     suspend fun getPhysicalStores(
         @Query("lat") latitude: Float,
