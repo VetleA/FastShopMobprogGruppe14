@@ -32,5 +32,9 @@ fun SearchResultItem(product: Data) {
         Text(
             text = "Nåværende pris: ${product.currentPrice ?: 0.0}",
             )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = "Butikk: ${product.store?.name ?: 0.0}",
+        )
     }
 }

@@ -135,6 +135,10 @@ fun SignInScreen(
                 Icon(imageVector = Icons.Default.Person, contentDescription = null)
 
             }
+            Row {
+                Text(text = "Anonym innlogging")
+            }
+
             LaunchedEffect(key1 = state.value?.isSuccess) {
                 scope.launch {
                     if (state.value?.isSuccess?.isNotEmpty() == true) {

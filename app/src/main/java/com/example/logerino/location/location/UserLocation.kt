@@ -25,8 +25,8 @@ fun requestNewLocationData(
     if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
         val locationRequest = LocationRequest.create().apply {
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            interval = 1000000
-            fastestInterval = 500000
+            interval = 10000
+            fastestInterval = 5000
         }
 
         val locationCallback = object : LocationCallback() {
