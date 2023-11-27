@@ -12,7 +12,6 @@ import kotlinx.coroutines.tasks.await
 
 class UserViewModel : ViewModel(){
     val state = mutableStateOf(User())
-    val uiStateUser = mutableStateOf("")
     val db = FirebaseFirestore.getInstance()
 
     private fun hentData(){

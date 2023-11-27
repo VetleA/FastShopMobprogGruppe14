@@ -7,10 +7,6 @@ sealed class Screens(val route: String) {
 
     object HandlelisteScreen : Screens(route = "Home_Screen")
 
-    object DetailScreen : Screens(route = "Detail_Screen")
-
-    object ListScreen : Screens(route = "List_Screen")
-
     object UserInfoScreen : Screens(route = "User_Info_Screen")
 
     object UpdateInfoScreen : Screens(route = "Update_User_Info_Screen")

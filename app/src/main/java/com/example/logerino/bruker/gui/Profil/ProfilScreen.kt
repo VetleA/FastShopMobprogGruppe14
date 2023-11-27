@@ -20,10 +20,8 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,7 +40,6 @@ import com.example.logerino.R
 import com.example.logerino.navigation.Screens
 import com.example.logerino.user.UserViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfilScreen(
     navController: NavController,

@@ -34,11 +34,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
-import com.example.logerino.detail.DetailScreen
 import com.example.logerino.handleliste.HandlelisteScreen
 import com.example.logerino.login.SignInScreen
 import com.example.logerino.handleliste.HandlelisteViewModel
-import com.example.logerino.handleliste.ListScreen
 import com.example.logerino.handleliste.EndreHandlelisteScreen
 import com.example.logerino.handleliste.SpesifikkHandlelisteScreen
 import com.example.logerino.user.UpdateUserInfoScreen
@@ -152,17 +150,6 @@ fun NavigationGraph(
                     handlelisteViewModel = HandlelisteViewModel()
                 )
             }
-            composable(route = Screens.DetailScreen.route){
-                DetailScreen(detailViewModel = null, handlelisteId = "") {
-
-                }
-            }
-
-            composable(route = Screens.ListScreen.route){
-                ListScreen(navController)
-
-            }
-
             composable(route = Screens.OpprettHandlelisteScreen.route){
                 EndreHandlelisteScreen(navController)
 

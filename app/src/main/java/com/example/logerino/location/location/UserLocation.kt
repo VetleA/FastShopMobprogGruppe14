@@ -3,11 +3,7 @@ package GUI.UserLocation
 import android.Manifest
 import android.content.Context
 import android.location.Location
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.runtime.*
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import androidx.core.content.ContextCompat
 import android.content.pm.PackageManager
 import android.os.Looper
